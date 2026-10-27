@@ -41,14 +41,16 @@
       padding-top: 1rem;
     }
 
+    /* Portretfoto: rechthoekig, mooi ingekaderd en scherp */
     .portrait {
-      width: 180px;
-      height: 180px;
-      border-radius: 50%;
-      object-fit: cover;
-      margin-bottom: 1.8rem;
-      box-shadow: 0 4px 20px rgba(0, 0, 0, 0.08);
-      border: 4px solid #fff;
+      width: 100%;
+      max-width: 340px;
+      height: auto;
+      border-radius: 10px;
+      margin: 0 auto 1.8rem;
+      box-shadow: 0 6px 20px rgba(0, 0, 0, 0.08);
+      border: 1px solid var(--border);
+      display: block;
     }
 
     h1 {
@@ -79,6 +81,38 @@
       background: var(--accent);
       margin: 1.5rem auto;
       opacity: 0.5;
+    }
+
+    /* Download knoppen */
+    .download-group {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+      margin: 1.8rem 0 1.2rem;
+      flex-wrap: wrap;
+    }
+
+    .btn-download {
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+      background-color: #ffffff;
+      color: var(--text-main);
+      border: 1px solid var(--border);
+      padding: 0.7rem 1.3rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      text-decoration: none;
+      font-weight: 500;
+      transition: all 0.2s ease;
+      box-shadow: 0 2px 6px rgba(0,0,0,0.03);
+    }
+
+    .btn-download:hover {
+      background-color: var(--accent-soft);
+      border-color: var(--accent);
+      color: var(--accent);
+      transform: translateY(-1px);
     }
 
     /* Secties */
@@ -114,7 +148,7 @@
     /* Video embeds */
     .video-container {
       position: relative;
-      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      padding-bottom: 56.25%; /* 16:9 verhouding */
       height: 0;
       overflow: hidden;
       border-radius: 8px;
@@ -158,7 +192,7 @@
       height: 40px;
     }
 
-    /* Gedicht */
+    /* Gedicht styling */
     .poem {
       background: var(--accent-soft);
       border-left: 3px solid var(--accent);
@@ -178,7 +212,7 @@
       margin-bottom: 0;
     }
 
-    /* Persoonlijke brief */
+    /* Persoonlijke brief sectie */
     .letter {
       background: #fffdfa;
       border: 1px solid #ebd9c8;
@@ -198,6 +232,8 @@
       section { padding: 1.6rem 1.3rem; }
       h1 { font-size: 1.9rem; }
       .poem { padding: 1.2rem 1.4rem; }
+      .download-group { flex-direction: column; }
+      .btn-download { justify-content: center; }
     }
   </style>
 </head>
@@ -205,14 +241,27 @@
 
   <div class="container">
 
-    <!-- Kop / Portret -->
+    <!-- Kop / Portret / Downloads -->
     <header>
       <img src="images/portret.jpg" alt="Walter Vermeylen" class="portrait" onerror="this.src='images/portret.jpeg'; this.onerror=null;">
+      
       <h1>Walter Vermeylen</h1>
       <p class="dates">11 mei 1952 — 18 oktober 2026</p>
       <p class="ceremony-meta">Afscheidsplechtigheid in Aula Daems te Schoten &bull; 26 oktober 2026</p>
+      
       <div class="divider"></div>
-      <p style="color: var(--text-muted); font-size: 1.02rem; max-width: 580px; margin: 0 auto;">
+
+      <!-- Knoppen direct bovenaan voor familie en vrienden -->
+      <div class="download-group">
+        <a href="downloads/gedachteniskaartje.pdf" download class="btn-download">
+          📄 Gedachteniskaartje (PDF)
+        </a>
+        <a href="downloads/fotos.zip" download class="btn-download">
+          📷 Alle foto's downloaden (ZIP)
+        </a>
+      </div>
+
+      <p style="color: var(--text-muted); font-size: 1.02rem; max-width: 580px; margin: 1.5rem auto 0;">
         Een serene plek ter herinnering aan Walter, met de teksten, foto’s en muziek van de afscheidsplechtigheid.
       </p>
     </header>
