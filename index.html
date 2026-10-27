@@ -9,10 +9,10 @@
       --bg: #f9f8f5;
       --card-bg: #ffffff;
       --text-main: #2d2d2d;
-      --text-muted: #6b6b6b;
+      --text-muted: #666666;
       --border: #e6e3dd;
       --accent: #5e6d5d;
-      --accent-soft: #f0f3f0;
+      --accent-soft: #f2f5f2;
     }
 
     * {
@@ -34,7 +34,7 @@
       margin: 0 auto;
     }
 
-    /* Koptekst */
+    /* Header */
     header {
       text-align: center;
       margin-bottom: 3.5rem;
@@ -81,7 +81,7 @@
       opacity: 0.5;
     }
 
-    /* Kaarten / Secties */
+    /* Secties */
     section {
       background: var(--card-bg);
       border: 1px solid var(--border);
@@ -101,13 +101,6 @@
       padding-bottom: 0.6rem;
     }
 
-    h3 {
-      font-size: 1.15rem;
-      font-weight: 600;
-      margin: 1.8rem 0 0.8rem;
-      color: #333;
-    }
-
     p {
       margin-bottom: 1.2rem;
       font-size: 1.05rem;
@@ -118,24 +111,54 @@
       margin-bottom: 0;
     }
 
-    /* Video player */
-    .video-wrapper {
+    /* Video embeds */
+    .video-container {
       position: relative;
-      width: 100%;
-      border-radius: 8px;
+      padding-bottom: 56.25%; /* 16:9 aspect ratio */
+      height: 0;
       overflow: hidden;
+      border-radius: 8px;
       background: #000;
-      margin-top: 1rem;
-      box-shadow: 0 4px 16px rgba(0,0,0,0.08);
+      margin: 1.5rem 0;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.08);
     }
 
-    video {
+    .video-container iframe {
+      position: absolute;
+      top: 0;
+      left: 0;
       width: 100%;
-      height: auto;
-      display: block;
+      height: 100%;
+      border: 0;
     }
 
-    /* Gedicht styling */
+    /* Audio blok */
+    .audio-block {
+      background: var(--accent-soft);
+      border: 1px solid var(--border);
+      border-radius: 8px;
+      padding: 1.2rem 1.4rem;
+      margin: 1.5rem 0;
+      display: flex;
+      flex-direction: column;
+      gap: 0.8rem;
+    }
+
+    .audio-title {
+      font-weight: 600;
+      font-size: 1.02rem;
+      color: #333;
+      display: flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    audio {
+      width: 100%;
+      height: 40px;
+    }
+
+    /* Gedicht */
     .poem {
       background: var(--accent-soft);
       border-left: 3px solid var(--accent);
@@ -155,39 +178,7 @@
       margin-bottom: 0;
     }
 
-    /* Muzieklijst */
-    .track-list {
-      list-style: none;
-      margin-top: 1rem;
-    }
-
-    .track-item {
-      padding: 1rem 0;
-      border-bottom: 1px solid var(--border);
-      display: flex;
-      flex-direction: column;
-      gap: 0.3rem;
-    }
-
-    .track-item:last-child {
-      border-bottom: none;
-    }
-
-    .track-title {
-      font-weight: 600;
-      font-size: 1.05rem;
-      color: #222;
-      display: flex;
-      align-items: center;
-      gap: 0.5rem;
-    }
-
-    .track-desc {
-      font-size: 0.95rem;
-      color: var(--text-muted);
-    }
-
-    /* Persoonlijke brief sectie */
+    /* Persoonlijke brief */
     .letter {
       background: #fffdfa;
       border: 1px solid #ebd9c8;
@@ -214,103 +205,112 @@
 
   <div class="container">
 
-    <!-- Hoofding / Portret -->
+    <!-- Kop / Portret -->
     <header>
-      <!-- Plaats je portretfoto in de map 'images/' als 'portret.jpg' -->
-      <img src="images/portret.jpeg" alt="Walter Vermeylen" class="portrait" onerror="this.style.display='none'">
+      <img src="images/portret.jpg" alt="Walter Vermeylen" class="portrait" onerror="this.src='images/portret.jpeg'; this.onerror=null;">
       <h1>Walter Vermeylen</h1>
       <p class="dates">11 mei 1952 — 18 oktober 2026</p>
       <p class="ceremony-meta">Afscheidsplechtigheid in Aula Daems te Schoten &bull; 26 oktober 2026</p>
       <div class="divider"></div>
       <p style="color: var(--text-muted); font-size: 1.02rem; max-width: 580px; margin: 0 auto;">
-        Een herinneringsplek met de teksten, foto’s en muziek van het afscheid, om in alle rust opnieuw te beleven.
+        Een serene plek ter herinnering aan Walter, met de teksten, foto’s en muziek van de afscheidsplechtigheid.
       </p>
     </header>
 
-    <!-- Beeld & Muziek: De MP4 Video -->
+    <!-- 1. Welkom & Aanvang -->
     <section>
-      <h2>Foto’s &amp; Muziek</h2>
-      <p>Hieronder kun je de samengestelde video met de foto's en muziek van de ceremonie bekijken en beluisteren:</p>
-      
-      <div class="video-wrapper">
-        <!-- Plaats je video in dezelfde map of een mapje 'video/' als 'herdenking.mp4' -->
-        <video controls playsinline preload="metadata">
-          <source src="herdenking.mp4" type="video/mp4">
-          Uw browser ondersteunt deze video helaas niet.
-        </video>
+      <h2>Aanvang van het afscheid</h2>
+      <p>
+        Beste familie, beste vrienden, beste mensen die Walter dierbaar waren, welkom.
+      </p>
+      <p>
+        We zijn hier samen om afscheid te nemen van Walter. Voor Ingrid, Ivo en Luc was hij papa. Voor zijn familie en vrienden was hij de stille, handige man die hard werkte, graag met elektronica bezig was en op zijn eigen manier veel voor anderen betekende.
+      </p>
+      <p>
+        Walter werd 74 jaar. Wie hem in de laatste tijd nabij was, heeft gezien hoe moeilijk het leven voor hem geworden was. Er is verdriet om zijn overlijden. Misschien is er bij sommigen ook opluchting dat zijn lijden voorbij is. Zulke gevoelens kunnen naast elkaar bestaan. Ze hoeven vandaag niet uitgelegd of verantwoord te worden.
+      </p>
+      <p>
+        Walter werkte destijds bij Hammond, de bekende orgelbouwer. Daar leerde hij orgel spelen. Dit was het laatste lied dat hij zelf op zijn orgel speelde. De partituur staat er tot op de dag van vandaag nog op de staander. Zo beginnen we dit afscheid met muziek die heel dicht bij hem staat.
+      </p>
+
+      <!-- Audio 1 -->
+      <div class="audio-block">
+        <div class="audio-title">🎵 Aanvangslied: A Whiter Shade of Pale — Procol Harum</div>
+        <audio controls preload="metadata">
+          <source src="audio/whiter_shade.mp3" type="audio/mpeg">
+          Uw browser ondersteunt deze audiospeler helaas niet.
+        </audio>
       </div>
+
+      <p>
+        Laten we mekaar vandaag vasthouden in het verdriet, maar ook in dankbaarheid voor wat hij voor ons heeft betekend.
+      </p>
     </section>
 
-    <!-- Muziekoverzicht -->
-    <section>
-      <h2>Muziek van de plechtigheid</h2>
-      <p>Muziek stond centraal in het leven van Walter. Tijdens de ceremonie luisterden we naar deze nummers:</p>
-      
-      <ul class="track-list">
-        <li class="track-item">
-          <span class="track-title">🎵 A Whiter Shade of Pale — Procol Harum</span>
-          <span class="track-desc">Het laatste lied dat Walter zelf op zijn Hammond-orgel speelde. De partituur staat er nog steeds op de staander.</span>
-        </li>
-        <li class="track-item">
-          <span class="track-title">🎵 The Young Ones — Cliff Richard</span>
-          <span class="track-desc">Muziek uit zijn jonge jaren waar hij graag naar luisterde; over jong zijn, het leven en de liefde.</span>
-        </li>
-        <li class="track-item">
-          <span class="track-title">🎵 Don’t Be Cruel — Elvis Presley</span>
-          <span class="track-desc">Een vertrouwde stem en ritme waar Walter altijd veel plezier aan beleefde.</span>
-        </li>
-        <li class="track-item">
-          <span class="track-title">🎵 Eenzaam zonder jou — Will Tura</span>
-          <span class="track-desc">Over het gemis en de leegte wanneer een dierbare heengaat.</span>
-        </li>
-        <li class="track-item">
-          <span class="track-title">🎵 Lookin’ Out My Back Door — Creedence Clearwater Revival</span>
-          <span class="track-desc">Een opgewekt, vrolijk en onbezorgd nummer waar hij enorm van genoot.</span>
-        </li>
-        <li class="track-item">
-          <span class="track-title">🎵 Let It Be — The Beatles</span>
-          <span class="track-desc">Een lied dat Walter destijds zelf aanleerde aan zijn zoon Luc; een boodschap van berusting, vrede en loslaten.</span>
-        </li>
-      </ul>
-    </section>
-
-    <!-- Tekst 1: Verwelkoming & Levensverhaal -->
+    <!-- 2. Het levensverhaal -->
     <section>
       <h2>Levensverhaal</h2>
 
       <p>
-        Walter werd geboren op 11 mei 1952 in Ekeren en groeide op in Merksem, in een gezin van tien kinderen. In zo’n groot gezin was er altijd wel iets te beleven. Toch was Walter eerder een stille jongen. Hij kon zich goed op zichzelf bezighouden en bracht veel tijd door met boeken. Zijn broers Herman en Guido gingen weleens met elkaar in de clinch. Walter probeerde dan tussenbeide te komen — wat voor hem niet altijd goed afliep, want geregeld deelde hij zelf in de klappen.
+        Walter werd geboren op 11 mei 1952 in Ekeren. Hij groeide op in Merksem, in een gezin van tien kinderen. In zo’n groot gezin was er altijd wel iets te beleven. Toch was Walter eerder een stille jongen. Hij kon zich goed op zichzelf bezighouden en bracht veel tijd door met boeken. Zijn broers Herman en Guido gingen weleens met elkaar in de clinch. Walter probeerde dan tussenbeide te komen. Dat liep voor hem niet altijd zo goed af, want geregeld deelde hij zelf in de klappen.
       </p>
 
       <p>
-        Zijn belangstelling ging al vroeg uit naar elektriciteit en elektronica. Zijn vader was elektricien en gaf hem veel van zijn technische kennis en handigheid mee. Toen zijn vader zelf een radio bouwde, was de tiener Walter gefascineerd: hij wilde doorgronden hoe de dingen werkten. Waar anderen zich ontspanden met een roman, dook Walter uit eigen beweging in integralen en differentialen.
+        Zijn belangstelling ging al vroeg uit naar elektriciteit en elektronica. Zijn vader was elektricien en gaf hem veel van zijn technische kennis en handigheid mee. Zijn vader had zelf een radio in elkaar gestoken. Als tiener was Walter daar veel mee bezig. Hij wilde begrijpen hoe dingen werkten en zocht dat ook zelf uit. Waar anderen misschien een boek opensloegen om zich te ontspannen, verdiepte Walter zich uit eigen beweging in integralen en differentialen.
       </p>
 
       <p>
-        Hij kon ook begenadigd tekenen en volgde les aan de tekenschool in Merksem, voor hij in de Londenstraat zijn A2-diploma elektronica behaalde. Tot zijn zestiende was hij lid van de Chiro. Met jeugdvrienden zoals Willy Ludwig en Rudy Siemons deelde hij veel; met Willy en zijn broer Guido ging hij later nog antennes plaatsen en apparaten herstellen.
+        Walter kon ook goed tekenen en volgde enkele jaren les aan de tekenschool in Merksem. In de Londenstraat behaalde hij uiteindelijk zijn A2-diploma elektronica. Tot zijn vijftiende of zestiende was hij lid van de Chiro. Hij had fijne jeugdvrienden, onder wie Willy Ludwig en Rudy Siemons. Met Willy zou hij later nog samenwerken: antennes plaatsen en reparaties uitvoeren in diens elektrozaak. Ook met zijn broer Guido ging hij antennes plaatsen.
+      </p>
+
+      <!-- Video 2: The Young Ones -->
+      <p>
+        We luisteren naar <em>The Young Ones</em> van Cliff Richard. Het is een lied over jong zijn, over liefde en over het leven dat nog voor je ligt. Voor Walter was dit de muziek die hij graag hoorde:
+      </p>
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/sMjhsnCFZ8Q" title="The Young Ones - Walter Vermeylen" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
+
+      <p>
+        Muziek kreeg eveneens een belangrijke plaats in zijn leven. Walter werd deejay, met een installatie die hij grotendeels zelf had gebouwd. Op de handelsbeurs van de parochie, op de terreinen van de jongenschiro, kwam hij in contact met de bekende radiomaker en presentator Rik Joosens. Hij bleef in de buurt wanneer bij hem de geluidsinstallatie getest werd, keek en luisterde aandachtig en leerde daar veel van.
       </p>
 
       <p>
-        Muziek kreeg een vaste plek. Walter werd dj met een grotendeels zelfgebouwde geluidsinstallatie. Op de parochiefeesten leerde hij van radiomaker Rik Joosens hoe geluidssystemen tot in de puntjes werkten. Later werkte hij onder meer bij Joossen, Vanden Borre en orgelbouwer Hammond, waar hij zelf ook orgel leerde spelen: techniek en muziek kwamen er naadloos samen.
+        Walter werkte op verschillende plaatsen, onder meer bij Hammond, Joossen en Vanden Borre. Bij Hammond leerde hij orgel spelen; zijn technische belangstelling en zijn liefde voor muziek kwamen daar samen.
       </p>
 
       <p>
-        In 1974 trouwde hij met Diana Matthijssens uit Schoten. Samen kregen ze drie kinderen: Ingrid, Ivo en Luc. Walter werkte onvermoeibaar voor zijn gezin en wilde hen alle kansen geven. Ieder van hen had eigen interesses en mogelijkheden, en hij was oprecht trots op hen.
+        Als jonge man ontmoette hij Diana Matthijssens uit Schoten. In 1974 trouwden ze. Ze kregen drie kinderen: Ingrid, Ivo en Luc. Walter werkte hard voor zijn gezin en wilde zijn kinderen geven wat zij nodig hadden. Ieder van hen had eigen mogelijkheden en interesses. Hij was trots op hen en liet dat ook blijken.
       </p>
 
       <p>
-        In 2019 trok Walter in bij zijn moeder, waardoor zij langer in haar vertrouwde omgeving kon blijven. Rond die periode begonnen de eerste signalen van dementie zich echter af te tekenen, met twee jaar geleden de definitieve diagnose. Het werd geleidelijk moeilijker om gewoon te handelen en te spreken, al bleven herinneringen van vroeger nog lang helder. Iets meer dan een jaar geleden verhuisde hij naar woonzorgcentrum De Welvaart in Kapellen. Na een bijzonder zware laatste maand is Walter op 18 oktober, op 74-jarige leeftijd, in alle rust heengegaan.
+        Walter en Diana bleven vele jaren samen, maar hun huwelijk hield uiteindelijk geen stand. In 2019 ging Walter bij zijn moeder wonen. Doordat hij daar introk, kon zij langer thuis, in haar vertrouwde omgeving, blijven wonen. Toen zijn moeder negentig werd, merkte de familie dat er bij Walter iets aan het veranderen was. De eerste onrustwekkende signalen waren er al rond 2017, maar twee jaar geleden werd officieel de diagnose dementie gesteld.
       </p>
+
+      <p>
+        De ziekte maakte het voor hem steeds moeilijker om te spreken en gewone handelingen uit te voeren. Herinneringen van vroeger bleven nog betrekkelijk goed aanwezig, terwijl het steeds lastiger werd om contact te maken en elkaar te begrijpen. Voor Walter en zijn naasten werd het dagelijks leven ingrijpend anders.
+      </p>
+
+      <p>
+        Iets meer dan een jaar geleden was thuis wonen niet meer doenbaar. Walter verhuisde naar woonzorgcentrum De Welvaart in Kapellen, waar ook zijn moeder verblijft. Walter ging sterk achteruit. De laatste periode, en zeker de afgelopen maand, was bijzonder zwaar en dramatisch voor hem en voor iedereen die hem liefhad. Op 18 oktober is Walter, op 74-jarige leeftijd, in alle rust van ons heengegaan.
+      </p>
+
+      <!-- Video 3: Don't Be Cruel -->
+      <p>
+        De vertrouwde stem en het ritme van Elvis Presley brachten hem altijd veel plezier:
+      </p>
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/wAAHi2WPNj4" title="Don't Be Cruel - Walter Vermeylen" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
     </section>
 
-    <!-- Tekst 2: Brief van Luc -->
+    <!-- 3. Brief van Luc -->
     <section class="letter">
-      <h2>Afscheidsbrief van Luc</h2>
+      <h2>Afscheidsbrief van zijn zoon Luc</h2>
       <p style="font-style: italic; color: #7a6350; margin-bottom: 1.5rem;">
-        Woorden uitgesproken door zijn zoon Luc tijdens de plechtigheid:
+        Woorden uitgesproken door Luc tijdens de ceremonie:
       </p>
 
-      <!-- HIER KUN JE JOUW DEFINITIEVE TEKST PLAKKEN -->
       <p>
         Lieve Papa,
       </p>
@@ -349,9 +349,12 @@
       </p>
     </section>
 
-    <!-- Tekst 3: Gedicht -->
+    <!-- 4. Gedicht & Eenzaam zonder jou -->
     <section>
       <h2>Gedicht</h2>
+      <p>
+        In zijn brief sprak Luc over de laatste periode waarin de verwarring en dementie langzaam de overhand namen. Het volgende gedicht verwoordt op een zachte manier hoe de patiënt zijn ziekte zelf beleeft:
+      </p>
       <div class="poem">
         <p>
           Vraag me niet te herinneren.<br>
@@ -378,45 +381,77 @@
           Tot dat ik voorgoed ben weggegaan…
         </p>
       </div>
+
+      <!-- Video 4: Eenzaam zonder jou -->
+      <p>
+        Na de woorden van zoon Luc laten we de muziek en de beelden even spreken, ieder met zijn eigen herinneringen aan Walter:
+      </p>
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/rO3oLtL74KY" title="Eenzaam zonder jou - Walter Vermeylen" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
     </section>
 
-    <!-- Tekst 4: Karakter, humor en levensles -->
+    <!-- 5. Herinneringen, humor & levensles -->
     <section>
-      <h2>Herinneringen, humor &amp; levensles</h2>
+      <h2>Karakter, humor &amp; levensles</h2>
       <p>
-        Als we terugkijken op het leven van Walter, zien we een man voor wie werk en passie naadloos in elkaar overliepen. Overdag werkte hij hard, en ’s nachts zat hij aan tafel te lezen, schema's te ontwerpen of apparaten te herstellen. Als er ergens een televisie stuk was — zelfs bij bekende Vlamingen — was het niet zelden Walter die werd opgeroepen om het feilloos op te lossen.
+        Als we terugkijken op het leven van Walter, zien we een man voor wie werk en hobby naadloos in elkaar overliepen. Elektronica was zijn grote passie. Overdag werkte hij hard, en ’s avonds, zelfs ’s nachts, zat hij thuis te lezen, schema's te ontwerpen of apparaten te herstellen. En als er ergens een televisie stuk was — zelfs bij bekende Vlamingen — dan was het niet zelden Walter die werd opgeroepen om het probleem op te lossen.
       </p>
       <p>
-        Maar er was ook volop ruimte voor ontspanning: in zijn jonge jaren fuiven op de Stadswaag in Antwerpen, dansen in de Blauwen Donau in Merksem of in Schilde en Zandhoven. Later kon hij intens genieten van een uitstapje naar de paters in Westmalle, met steevast een boterham met kaas en een goede trappist op tafel.
+        Maar er was gelukkig ook ruimte voor ontspanning. In zijn jongere jaren ging hij graag naar fuiven op de Stadswaag in Antwerpen, dansen in de Blauwen Donau in Merksem of naar de dansgelegenheden in Schilde en Zandhoven. Later kon Walter ook intens genieten van een uitstapje naar de trappisten in Westmalle, met steevast een boterham met kaas en een goede trappist op tafel.
       </p>
       <p>
-        Walter bezat bovendien een heerlijke, subtiele humor. Als dj voorzag hij bekende hits gerust van een eigen vertaling: <em>Butterfly</em> werd <em>Botervlieg</em>, en in plaats van <em>"Ich hab meine Sinne verloren"</em> zong hij met een knipoog <em>"Ik ben mijn onderbroek verloren"</em>. Stil en bescheiden, maar met een rake kwinkslag op het juiste moment.
+        Walter had ook een heel eigen, fijne humor. Als dj schroomde hij niet om bekende nummers van een eigen tekst te voorzien: <em>Butterfly</em> werd <em>Botervlieg</em>, en in plaats van <em>"Ich hab meine Sinne verloren"</em> zong Walter vol overgave <em>"Ik ben mijn onderbroek verloren"</em>. Het typeerde de man: stil en bescheiden, maar met een heerlijke kwinkslag op het juiste moment.
       </p>
       <p>
-        Zijn gezin was zijn trots en hij verdedigde zijn kinderen door dik en dun. Vooral voor zijn dochter, zijn 'Grietje', was hij enorm beschermend. Hij was geen man van grote betogen, maar in al zijn daden voelde je zijn onvoorwaardelijke toewijding.
+        Zijn gezin was zijn trots. Voor zijn kinderen wilde hij alleen het allerbeste. Hij kon streng zijn op de juiste momenten, maar dat kwam voort uit een diepe beschermingsdrang en liefde. Vooral voor zijn dochter, zijn 'Grietje', was hij enorm beschermend. Hij was geen spraakwaterval, maar in alles wat hij deed voelde je zijn toewijding. Hij stond voor zijn zaak en verdedigde zijn kinderen door dik en dun.
       </p>
       <p>
-        De levensles die Walter ons nalaat is helder: je hoeft niet op de voorgrond te treden of veel lawaai te maken om een diepe, blijvende indruk achter te laten. Rustige toewijding, eerlijkheid, hard werken en er onvoorwaardelijk zijn voor wie je liefhebt: dát is de essentie.
+        Als we vandaag een levensles uit het leven van Walter mogen meenemen, dan is het wel deze: je hoeft niet op de voorgrond te treden of veel lawaai te maken om een diepe indruk achter te laten. Rustige toegewijding, eerlijkheid, hard werken en er onvoorwaardelijk zijn voor de mensen van wie je houdt, dat is de essentie.
       </p>
+
+      <!-- Video 5: Looking out my back door -->
+      <p>
+        Een vrolijk en onbezorgd nummer waar Walter enorm van kon genieten:
+      </p>
+      <div class="video-container">
+        <iframe src="https://www.youtube.com/embed/p0phG8kefeQ" title="Looking out my back door - Walter Vermeylen" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen loading="lazy"></iframe>
+      </div>
     </section>
 
-    <!-- Tekst 5: Slotwoord -->
+    <!-- 6. Slotwoord & Let It Be -->
     <section>
-      <h2>Tot slot</h2>
+      <h2>Tot slot &amp; Laatste groet</h2>
       <p>
-        De herinneringen aan Walter nemen we ieder op onze eigen manier mee in ons dagelijks leven: in een melodie die ergens klinkt, een apparaat waar Walter wel raad mee had geweten, of een verhaal dat opnieuw wordt verteld.
+        Walter heeft tijdens zijn leven een onuitwisbare indruk achtergelaten op zijn kinderen, zijn familie en iedereen die het voorrecht had hem te kennen. De dankbaarheid voor wat hij heeft gegeven, weegt zwaarder dan de pijn van het afscheid.
       </p>
       <p>
-        We danken iedereen die hem gekend heeft voor de vriendschap en de warme steun in deze periode.
+        Voor zijn naasten begint nu een tijd waarin het gemis op allerlei momenten voelbaar kan worden: een lied dat ergens klinkt, een apparaat waar Walter wel raad mee had geweten, of een herinnering die opnieuw wordt verteld.
+      </p>
+      <p>
+        Tijdens de laatste groet luisterden we naar <em>Let It Be</em> van The Beatles. Walter was een grote Beatlesfan en heeft dit lied destijds zelf nog aangeleerd aan zijn zoon Luc. Een allerlaatste boodschap van berusting, vrede en loslaten.
+      </p>
+
+      <!-- Audio 6 -->
+      <div class="audio-block">
+        <div class="audio-title">🎵 Slotlied: Let It Be — The Beatles</div>
+        <audio controls preload="metadata">
+          <source src="audio/letitbe.mp3" type="audio/mpeg">
+          Uw browser ondersteunt deze audiospeler helaas niet.
+        </audio>
+      </div>
+
+      <p style="margin-top: 1.5rem;">
+        Dank aan iedereen die hem gekend heeft voor de vriendschap en de warme steun in deze moeilijke tijd.
       </p>
     </section>
 
     <footer>
-      Voor altijd in ons hart en in onze herinnering.<br>
+      Voor altijd in onze gedachten en in ons hart.<br>
       Walter Vermeylen (1952 – 2026)
     </footer>
 
   </div>
 
 </body>
-</html> 
+</html>
